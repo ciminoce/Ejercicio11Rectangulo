@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FrmIngresoValor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmIngresoValor.Designer.cs">
+      <DependentUpon>FrmIngresoValor.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmListaRectangulos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -60,6 +66,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FrmIngresoValor.resx">
+      <DependentUpon>FrmIngresoValor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmListaRectangulos.resx">
       <DependentUpon>FrmListaRectangulos.cs</DependentUpon>
     </EmbeddedResource>
@@ -133,6 +142,9 @@
     <Content Include="Rectangulos.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\reversed_numerical_sorting_24px.png" />
+    <None Include="Resources\numeric_24px.png" />
+    <None Include="Resources\up_down_arrow_36px.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

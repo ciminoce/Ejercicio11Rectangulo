@@ -22,6 +22,7 @@ namespace Ejercicio11Cuadrado.Windows
         private List<Rectangulo> lista;
         private int cantidadRegistros = 0;
         private RepositorioDeRectangulos repositorio;
+        private Func<Rectangulo, bool> predicado;
         private void FrmListaRectangulos_Load(object sender, EventArgs e)
         {
             repositorio = new RepositorioDeRectangulos();
@@ -126,6 +127,101 @@ namespace Ejercicio11Cuadrado.Windows
                 SetearFila(r,copiaRectangulo);
                 MessageBox.Show("Registro agregado");
             }
+        }
+
+        private void SalirToolStripButton_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void ascendentePorLadoMayorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            lista=repositorio.OrdenarAscendentePorLadoMayor();
+            MostrarDatosEnGrilla();
+        }
+
+        private void descendentePorLadoMayorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            lista = repositorio.OrdenarDescendentePorLadoMayor();
+            MostrarDatosEnGrilla();
+        }
+
+        private void descendentePorSuperficieToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            lista = repositorio.OrdenarDescendentePorSuperficie();
+            MostrarDatosEnGrilla();
+        }
+
+        private void ActualizarToolStripButton_Click(object sender, EventArgs e)
+        {
+            lista = repositorio.GetLista();
+            MostrarDatosEnGrilla();
+            ActualizarCantidadDeRegistros(repositorio.GetCantidad());
+        }
+
+        private void MayorIgualLadoMayorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //FrmIngresoValor frm = new FrmIngresoValor() {Text = "Ingresar valor para filtrar"};
+            //DialogResult dr = frm.ShowDialog(this);
+            //if (dr==DialogResult.Cancel)
+            //{
+            //    return;
+
+            //}
+
+            if (GetValorParaFiltrar(out var frm)) return;
+
+            int valor = frm.GetValor();
+            predicado=r=>r.LadoMayor>=valor;
+            //lista = repositorio.FiltrarMayorIgualLadoMayor(valor);
+            lista = repositorio.Filtrar(predicado);
+            MostrarDatosEnGrilla();
+            ActualizarCantidadDeRegistros(repositorio.GetCantidad(predicado));
+        }
+
+        private void MenorIgualLadoMayorToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            //FrmIngresoValor frm = new FrmIngresoValor() { Text = "Ingresar valor para filtrar" };
+            //DialogResult dr = frm.ShowDialog(this);
+            //if (dr == DialogResult.Cancel)
+            //{
+            //    return;
+
+            //}
+            if (GetValorParaFiltrar(out var frm)) return;
+
+            int valor = frm.GetValor();
+            predicado = r => r.LadoMayor <= valor;
+            //lista = repositorio.FiltrarMenorIgualLadoMayor(valor);
+            lista = repositorio.Filtrar(predicado);
+            MostrarDatosEnGrilla();
+            ActualizarCantidadDeRegistros(repositorio.GetCantidad(predicado));
+
+        }
+
+        private void IgualLadoMayorToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            if (GetValorParaFiltrar(out var frm)) return;
+
+            int valor = frm.GetValor();
+            predicado = r => r.LadoMayor == valor;
+            lista = repositorio.Filtrar(predicado);
+            //lista = repositorio.FiltrarIgualLadoMayor(valor);
+            MostrarDatosEnGrilla();
+            ActualizarCantidadDeRegistros(repositorio.GetCantidad(predicado));
+
+        }
+
+        private bool GetValorParaFiltrar(out FrmIngresoValor frm)
+        {
+            frm = new FrmIngresoValor() {Text = "Ingresar valor para filtrar"};
+            DialogResult dr = frm.ShowDialog(this);
+            if (dr == DialogResult.Cancel)
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }

@@ -143,6 +143,16 @@ namespace Ejercicio11Cuadrado.Windows.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap numeric_24px {
+            get {
+                object obj = ResourceManager.GetObject("numeric_24px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap restart_36px {
             get {
                 object obj = ResourceManager.GetObject("restart_36px", resourceCulture);
@@ -153,9 +163,29 @@ namespace Ejercicio11Cuadrado.Windows.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap reversed_numerical_sorting_24px {
+            get {
+                object obj = ResourceManager.GetObject("reversed_numerical_sorting_24px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap statistics_36px {
             get {
                 object obj = ResourceManager.GetObject("statistics_36px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap up_down_arrow_36px {
+            get {
+                object obj = ResourceManager.GetObject("up_down_arrow_36px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

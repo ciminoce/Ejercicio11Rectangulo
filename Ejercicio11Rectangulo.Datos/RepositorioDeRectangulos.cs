@@ -82,6 +82,10 @@ namespace Ejercicio11Rectangulo.Datos
             return listaRectangulo.Count;
         }
 
+        public int GetCantidad(Func<Rectangulo, bool> predicado)
+        {
+            return listaRectangulo.Count(predicado);
+        }
         public bool Existe(Rectangulo rectangulo)
         {
             return listaRectangulo.Contains(rectangulo);
@@ -119,6 +123,45 @@ namespace Ejercicio11Rectangulo.Datos
             lector.Close();
             File.Delete(_archivo);
             File.Move(_archivoBak, _archivo);
+        }
+
+        public List<Rectangulo> OrdenarAscendentePorLadoMayor()
+        {
+            return listaRectangulo.OrderBy(r => r.LadoMayor)
+                .ThenBy(r=>r.LadoMenor)
+                .ToList();
+        }
+
+        public List<Rectangulo> OrdenarDescendentePorLadoMayor()
+        {
+            return listaRectangulo.OrderByDescending(r => r.LadoMayor)
+                .ThenByDescending(r=>r.LadoMenor)
+                .ToList();
+        }
+
+        public List<Rectangulo> OrdenarDescendentePorSuperficie()
+        {
+            return listaRectangulo.OrderByDescending(r => r.GetSuperficie()).ToList();
+        }
+
+        //public List<Rectangulo> FiltrarMayorIgualLadoMayor(int valor)
+        //{
+        //    return listaRectangulo.Where(r => r.LadoMayor >= valor).ToList();
+        //}
+
+        //public List<Rectangulo> FiltrarMenorIgualLadoMayor(int valor)
+        //{
+        //    return listaRectangulo.Where(r => r.LadoMayor <= valor).ToList();
+        //}
+
+        //public List<Rectangulo> FiltrarIgualLadoMayor(int valor)
+        //{
+        //    return listaRectangulo.Where(r => r.LadoMayor == valor).ToList();
+        //}
+
+        public List<Rectangulo> Filtrar(Func<Rectangulo, bool> predicado)
+        {
+            return listaRectangulo.Where(predicado).ToList();
         }
     }
 }
